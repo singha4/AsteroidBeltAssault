@@ -144,6 +144,10 @@ namespace Asteroid_Belt_Assault
             location += (velocity * elapsed);
         }
 
-
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Texture, Center, Source, tintColor, rotation,
+            new Vector2(frameWidth / 2, frameHeight / 2), 1.0f, SpriteEffects.None, 0.0f);
+        }
     }
 }

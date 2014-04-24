@@ -19,9 +19,10 @@ namespace Asteroid_Belt_Assault
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
-        GameStates gameState = GameStates.TitleScreen;
+        GameStates gameState = GameStates.Playing;
         Texture2D titleScreen;
         Texture2D spriteSheet;
+        StarField starField;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
