@@ -52,6 +52,10 @@ namespace Asteroid_Belt_Assault
             spriteBatch = new SpriteBatch(GraphicsDevice);
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             spriteSheet = Content.Load<Texture2D>(@"Textures\spriteSheet");
+
+            starField = new StarField(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height,200,
+                new Vector2(0, 30f),spriteSheet,new Rectangle(0, 450, 2, 2));
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -80,7 +84,7 @@ namespace Asteroid_Belt_Assault
             {
                 case GameStates.TitleScreen:
                     break;
-                case GameStates.Playing:
+                case GameStates.Playing: starField.Update(gameTime);
                     break;
                 case GameStates.PlayerDead:
                     break;
@@ -97,7 +101,7 @@ namespace Asteroid_Belt_Assault
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
@@ -112,6 +116,7 @@ namespace Asteroid_Belt_Assault
             (gameState == GameStates.PlayerDead) ||
             (gameState == GameStates.GameOver))
             {
+                starField.Draw(spriteBatch);
             }
             if ((gameState == GameStates.GameOver))
             {
