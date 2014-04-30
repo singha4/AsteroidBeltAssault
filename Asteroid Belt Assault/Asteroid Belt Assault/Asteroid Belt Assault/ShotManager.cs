@@ -40,5 +40,27 @@ namespace Asteroid_Belt_Assault
             thisShot.CollisionRadius = CollisionRadius;
             Shots.Add(thisShot);
         }
+
+        public void Update(GameTime gameTime)
+        {
+            for (int x = Shots.Count - 1; x >= 0; x--)
+            {
+                Shots[x].Update(gameTime);
+                if (!screenBounds.Intersects(Shots[x].Destination))
+                {
+                    Shots.RemoveAt(x);
+                }
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (Sprite shot in Shots)
+            {
+                shot.Draw(spriteBatch);
+            }
+        }
+
+
     }
 }

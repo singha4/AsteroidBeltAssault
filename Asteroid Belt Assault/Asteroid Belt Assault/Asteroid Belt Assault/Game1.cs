@@ -24,6 +24,7 @@ namespace Asteroid_Belt_Assault
         Texture2D spriteSheet;
         StarField starField;
         AsteroidManager asteroidManager;
+        PlayerManager playerManager;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -59,6 +60,9 @@ namespace Asteroid_Belt_Assault
 
             asteroidManager = new AsteroidManager(10,spriteSheet,new Rectangle(0, 0, 50, 50),20,
                 this.Window.ClientBounds.Width,this.Window.ClientBounds.Height);
+
+            playerManager = new PlayerManager(spriteSheet,new Rectangle(0, 150, 50, 50),3,
+                new Rectangle(0,0,this.Window.ClientBounds.Width,this.Window.ClientBounds.Height));
             // TODO: use this.Content to load your game content here
         }
 
@@ -90,6 +94,7 @@ namespace Asteroid_Belt_Assault
                 case GameStates.Playing: 
                     starField.Update(gameTime);
                     asteroidManager.Update(gameTime);
+                    playerManager.Update(gameTime);
                     break;
                 case GameStates.PlayerDead:
                     break;
@@ -123,6 +128,7 @@ namespace Asteroid_Belt_Assault
             {
                 starField.Draw(spriteBatch);
                 asteroidManager.Draw(spriteBatch);
+                playerManager.Draw(spriteBatch);
             }
             if ((gameState == GameStates.GameOver))
             {
