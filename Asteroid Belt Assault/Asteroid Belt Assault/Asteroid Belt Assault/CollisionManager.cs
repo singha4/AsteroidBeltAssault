@@ -60,6 +60,66 @@ namespace Asteroid_Belt_Assault
         }
 
 
+        private void checkShotToPlayerCollisions()
+        {
+            foreach (Sprite shot in enemyManager.EnemyShotManager.Shots)
+            {
+                if (shot.IsCircleColliding(playerManager.playerSprite.Center,playerManager.playerSprite.CollisionRadius))
+                {
+                    shot.Location = offScreen;
+                    playerManager.Destroyed = true;
+                    explosionManager.AddExplosion(playerManager.playerSprite.Center,Vector2.Zero);
+                }
+            }
+        }
+
+
+
+        private void checkEnemyToPlayerCollisions()
+        {
+            foreach (Enemy enemy in enemyManager.Enemies)
+            {
+                if (enemy.EnemySprite.IsCircleColliding(playerManager.playerSprite.Center,playerManager.playerSprite.CollisionRadius))
+                {
+                    enemy.Destroyed = true;
+                    explosionManager.AddExplosion(enemy.EnemySprite.Center,enemy.EnemySprite.Velocity / 10);
+                    playerManager.Destroyed = true;
+                    explosionManager.AddExplosion(playerManager.playerSprite.Center,Vector2.Zero);
+                }
+            }
+        }
+
+
+
+        private void checkAsteroidToPlayerCollisions()
+        {
+            foreach (Sprite asteroid in asteroidManager.Asteroids)
+            {
+                if (asteroid.IsCircleColliding(playerManager.playerSprite.Center,playerManager.playerSprite.CollisionRadius))
+                {
+                    explosionManager.AddExplosion(asteroid.Center,asteroid.Velocity / 10);
+                    asteroid.Location = offScreen;
+                    playerManager.Destroyed = true;
+                    explosionManager.AddExplosion(playerManager.playerSprite.Center,Vector2.Zero);
+                }
+            }
+        }
+
+
+
+        public void CheckCollisions()
+        {
+            checkShotToEnemyCollisions();
+            checkShotToAsteroidCollisions();
+            if (!playerManager.Destroyed)
+            {
+                checkShotToPlayerCollisions();
+                checkEnemyToPlayerCollisions();
+                checkAsteroidToPlayerCollisions();
+            }
+        }
+
+
 
     }
 }
