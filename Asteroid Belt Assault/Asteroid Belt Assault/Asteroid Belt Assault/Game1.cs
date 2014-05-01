@@ -25,6 +25,8 @@ namespace Asteroid_Belt_Assault
         StarField starField;
         AsteroidManager asteroidManager;
         PlayerManager playerManager;
+        EnemyManager enemyManager;
+        ExplosionManager explosionManager;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -63,6 +65,11 @@ namespace Asteroid_Belt_Assault
 
             playerManager = new PlayerManager(spriteSheet,new Rectangle(0, 150, 50, 50),3,
                 new Rectangle(0,0,this.Window.ClientBounds.Width,this.Window.ClientBounds.Height));
+
+            enemyManager = new EnemyManager(spriteSheet,new Rectangle(0, 200, 50, 50),6,playerManager,
+                new Rectangle(0,0,this.Window.ClientBounds.Width,this.Window.ClientBounds.Height));
+
+            explosionManager = new ExplosionManager(spriteSheet,new Rectangle(0, 100, 50, 50),3,new Rectangle(0, 450, 2, 2));
             // TODO: use this.Content to load your game content here
         }
 
@@ -95,6 +102,8 @@ namespace Asteroid_Belt_Assault
                     starField.Update(gameTime);
                     asteroidManager.Update(gameTime);
                     playerManager.Update(gameTime);
+                    enemyManager.Update(gameTime);
+                    explosionManager.Update(gameTime);
                     break;
                 case GameStates.PlayerDead:
                     break;
@@ -129,6 +138,8 @@ namespace Asteroid_Belt_Assault
                 starField.Draw(spriteBatch);
                 asteroidManager.Draw(spriteBatch);
                 playerManager.Draw(spriteBatch);
+                enemyManager.Draw(spriteBatch);
+                explosionManager.Draw(spriteBatch);
             }
             if ((gameState == GameStates.GameOver))
             {
