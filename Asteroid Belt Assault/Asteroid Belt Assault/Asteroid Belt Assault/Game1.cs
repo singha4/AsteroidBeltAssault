@@ -73,7 +73,9 @@ namespace Asteroid_Belt_Assault
             explosionManager = new ExplosionManager(spriteSheet,new Rectangle(0, 100, 50, 50),3,new Rectangle(0, 450, 2, 2));
 
             collisionManager = new CollisionManager(asteroidManager,playerManager,enemyManager,explosionManager);
+
             // TODO: use this.Content to load your game content here
+            SoundManager.Initialize(Content);
         }
 
         /// <summary>

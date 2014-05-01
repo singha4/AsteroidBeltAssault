@@ -68,6 +68,7 @@ namespace Asteroid_Belt_Assault
                 ExplosionParticles.Add(new Particle(location,texture,pointRectangle,randomDirection((float)rand.Next(
                     pointSpeedMin, pointSpeedMax)) + momentum,Vector2.Zero,explosionMaxSpeed,durationCount,initialColor,finalColor));
             }
+            SoundManager.PlayExplosion();
         }
 
 
