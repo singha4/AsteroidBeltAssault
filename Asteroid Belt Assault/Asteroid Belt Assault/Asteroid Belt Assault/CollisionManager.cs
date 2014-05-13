@@ -38,6 +38,7 @@ namespace Asteroid_Belt_Assault
                         enemy.Destroyed = true;
                         playerManager.PlayerScore += enemyPointValue;
                         explosionManager.AddExplosion(enemy.EnemySprite.Center,enemy.EnemySprite.Velocity / 10);
+                        
                     }
                 }
             }
@@ -53,7 +54,12 @@ namespace Asteroid_Belt_Assault
                     if (shot.IsCircleColliding(asteroid.Center,asteroid.CollisionRadius))
                     {
                         shot.Location = offScreen;
+                       
+                        
+                        playerManager.PlayerScore += enemyPointValue;
+                        explosionManager.AddExplosion(asteroid.Center, asteroid.Velocity / 10);
                         asteroid.Velocity += shotToAsteroidImpact;
+                        asteroid.Location = offScreen;
                     }
                 }
             }
