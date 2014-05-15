@@ -21,7 +21,7 @@ namespace Asteroid_Belt_Assault
         private float nextWaveMinTimer = 8.0f;
         private float shipSpawnTimer = 0.0f;
         private float shipSpawnWaitTime = 0.5f;
-        private float shipShotChance = 0.2f;
+        private float shipShotChance = 5f;
         private List<List<Vector2>> pathWaypoints = new List<List<Vector2>>();
         private Dictionary<int, int> waveSpawns = new Dictionary<int,int>();
         public bool Active = false;

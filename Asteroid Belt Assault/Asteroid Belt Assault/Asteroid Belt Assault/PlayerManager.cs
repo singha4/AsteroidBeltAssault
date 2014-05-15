@@ -26,7 +26,7 @@ namespace Asteroid_Belt_Assault
         {
             playerSprite = new Sprite(new Vector2(500, 500),texture,initialFrame,Vector2.Zero);
             PlayerShotManager = new ShotManager(texture,new Rectangle(0, 300, 5, 5),4,2,250f,screenBounds);
-            playerAreaLimit = new Rectangle( 0,screenBounds.Height / 2,screenBounds.Width,screenBounds.Height / 2);
+            playerAreaLimit = new Rectangle(0, 0, screenBounds.Width, screenBounds.Height);
             for (int x = 1; x < frameCount; x++)
             {
                 playerSprite.AddFrame(new Rectangle(initialFrame.X + (initialFrame.Width * x),

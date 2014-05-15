@@ -30,7 +30,7 @@ namespace Asteroid_Belt_Assault
         CollisionManager collisionManager;
 
         SpriteFont pericles14;
-        private float playerDeathDelayTime = 10f;
+        private float playerDeathDelayTime = 2.5f;
         private float playerDeathTimer = 0f;
         private float titleScreenTimer = 0f;
         private float titleScreenDelayTime = 1f;
@@ -67,6 +67,11 @@ namespace Asteroid_Belt_Assault
             spriteBatch = new SpriteBatch(GraphicsDevice);
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             spriteSheet = Content.Load<Texture2D>(@"Textures\spriteSheet");
+
+
+            Song song = Content.Load<Song>(@"Sounds\Requiem");  // Put the name of your song in instead of "song_title"
+            MediaPlayer.Play(song);
+
 
             starField = new StarField(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height,200,
                 new Vector2(0, 30f),spriteSheet,new Rectangle(0, 450, 2, 2));
